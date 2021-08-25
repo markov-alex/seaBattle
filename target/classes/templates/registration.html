@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+</head>
+<body>
+    <div th:if="${message}">
+        <p th:text="${message}"></p>
+    </div>
+
+    <form id="regForm" th:action="@{/registration}" method="POST">
+        <div>
+            <label>
+                Логин: <input type="text" name="username">
+            </label>
+        </div>
+        <div>
+            <label>
+                Пароль: <input type="password" name="password">
+            </label>
+        </div>
+        <div>
+            <input type="submit" value="Зарегистрироваться" id="buttonSubmit">
+        </div>
+    </form>
+
+    <script type="text/javascript">
+
+        regForm.buttonSubmit.onclick = function() {
+            if (regForm.username.value === "") {
+                alert("Имя пользователя обязательно");
+                regForm.username.focus();
+                return false;
+            }
+            if (regForm.password.value === "") {
+                alert("Пароль обязателен");
+                regForm.password.focus();
+                return false;
+            }
+        };
+
+    </script>
+</body>
+</html>

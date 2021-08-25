@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход</title>
+</head>
+<body>
+    <div th:if="${param.error}">
+        Неверный логин или пароль.
+    </div>
+    <div th:if="${param.logout}">
+        Вы вышли.
+    </div>
+    <form id="loginForm" th:action="@{/login}" method="POST">
+        <div>
+            <label>
+                Логин: <input type="text" name="username">
+            </label>
+        </div>
+        <div>
+            <label>
+                Пароль: <input type="password" name="password">
+            </label>
+        </div>
+        <div>
+            <input type="submit" value="Войти" id="buttonSubmit">
+        </div>
+    </form>
+
+    <a th:href="@{/registration}">Зарегистрироваться</a>
+
+    <script type="text/javascript">
+
+        loginForm.buttonSubmit.onclick = function() {
+            if (loginForm.username.value === "") {
+                alert("Имя пользователя обязательно");
+                loginForm.username.focus();
+                return false;
+            }
+            if (loginForm.password.value === "") {
+                alert("Пароль обязателен");
+                loginForm.password.focus();
+                return false;
+            }
+        };
+
+    </script>
+</body>
+</html>
