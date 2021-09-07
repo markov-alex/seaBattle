@@ -4,6 +4,7 @@ import org.example.seaBattle.domain.Role;
 import org.example.seaBattle.domain.User;
 import org.example.seaBattle.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,16 +20,10 @@ public class HttpController {
     @Autowired
     private UserRepository userRepository;
 
-//    private static List<User> waitingUsers;
-//    private static Map<String, Game> gameSessions;
-//
-//    static {
-//        waitingUsers = new LinkedList<>();
-//        gameSessions = new HashMap<>();
-//    }
-
     @GetMapping("/")
-    public String getMainPage() {
+    public String getMainPage(@AuthenticationPrincipal User user,
+                              Model model) {
+        model.addAttribute("user", user);
         return "index";
     }
 

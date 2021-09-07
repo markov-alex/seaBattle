@@ -5,6 +5,22 @@
     <title>Поиск игры</title>
 </head>
 <body>
-    <a href="/playground/findgame">Поиск игры</a>
+    <a id="find" href="/playground/findgame">Поиск игры</a>
+    <script>
+        let loc = window.location;
+        let pathnameArr = loc.pathname.split('/');
+        pathnameArr[2] = "findgame";
+        let urlPath = pathnameArr.join('/');
+        let url = loc.protocol + "//" + loc.host + urlPath;
+
+        setInterval(() => {
+            const response = fetch(url)
+                .then(res => {
+                    if (res.redirected) {
+                        document.location = res.url;
+                    }
+                })
+        }, 1000);
+    </script>
 </body>
 </html>

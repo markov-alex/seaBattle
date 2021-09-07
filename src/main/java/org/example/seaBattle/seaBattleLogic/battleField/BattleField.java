@@ -3,6 +3,9 @@ package org.example.seaBattle.seaBattleLogic.battleField;
 import org.example.seaBattle.seaBattleLogic.Coordinate;
 import org.example.seaBattle.seaBattleLogic.ship.Ship;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class BattleField {
     private final static int BATTLE_FIELD_SIZE = 10;
     private final Cell[][] cells;
@@ -84,4 +87,28 @@ public class BattleField {
         }
     }
 
+    public boolean allShipsTakedDown() {
+        for (Ship ship: ships) {
+            if (!ship.isDowned())
+                return false;
+        }
+        return true;
+    }
+
+    public ResultOfShot[] recoverPreviousStateOfShots() {
+        List<ResultOfShot> listResults = new LinkedList<>();
+        for (int i = 0; i < BATTLE_FIELD_SIZE; ++i) {
+            for (int j = 0; j < BATTLE_FIELD_SIZE; ++j) {
+                Cell cell = cells[i][j];
+                if (cell.getState() == CellState.SHOT || cell.getState() == CellState.BEATED_SHIP) {
+                    listResults.add(new ResultOfShot(new Coordinate(i, j), cell.getState()));
+                }
+            }
+        }
+        return listResults.toArray(new ResultOfShot[0]);
+    }
+
+    public Ship[] getShips() {
+        return ships;
+    }
 }

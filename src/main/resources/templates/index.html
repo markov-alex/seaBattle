@@ -5,6 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+    <div th:if="${user}">
+        <p th:text="'Вы: ' + ${user.getUsername()}"></p>
+    </div>
     <a th:href="@{/playground}">Играть</a>
     <a th:href="@{/login}">Войти</a> <br>
     <a th:href="@{/registration}">Зарегистрироваться</a>

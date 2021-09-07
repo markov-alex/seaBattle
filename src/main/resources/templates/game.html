@@ -1,11 +1,62 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://thymeleaf.org">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Игра</title>
-</head>
-<body>
-    <p>Игра!</p>
-    <p th:text="${gameId}"></p>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sea Battle</title>
+        <link rel="stylesheet" href="/static/style.css" />
+    </head>
+    <body>
+        <div class="app">
+            <div class="app-header">
+                <h1 class="app-title">Морской бой</h1>
+                <p class="app-subtitle">
+                    <span th:text="${playerUsername}" style="margin-right: 250px"></span>
+                    <span th:text="${opponentUsername}" style="margin-left: 250px"></span>
+                </p>
+            </div>
+            <div class="app-body">
+                <div data-side="player"></div>
+
+                <div class="app-menu">
+                    <div class="app-actions" data-scene="preparation">
+                        <button class="app-action" data-type="ready" disabled>
+                            Готов
+                        </button>
+                        <button class="app-action" data-action="manually">
+                            Расставить корабли вручную
+                        </button>
+                        <button class="app-action" data-action="randomize">
+                            Расставить корабли случайно
+                        </button>
+                    </div>
+                    <div class="app-actions" data-scene="game">
+                        <div class="battlefield-status" data-type="curStatus"></div>
+                        <button class="app-action" data-action="surrender">Сдаться</button>
+                    </div>
+                    <div class="app-actions" data-scene="end">
+                        <div class="battlefield-status" data-type="endStatus"></div>
+                        <button class="app-action" data-action="exit">Выйти</button>
+                    </div>
+                </div>
+
+                <div data-side="opponent"></div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="/static/scripts/additional.js"></script>
+        <script type="text/javascript" src="/static/scripts/Mouse.js"></script>
+        <script type="text/javascript" src="/static/scripts/Application.js"></script>
+        <script type="text/javascript" src="/static/scripts/Scene.js"></script>
+        <script type="text/javascript" src="/static/scripts/scenes/PreparationScene.js"></script>
+        <script type="text/javascript" src="/static/scripts/scenes/GameScene.js"></script>
+        <script type="text/javascript" src="/static/scripts/scenes/EndScene.js"></script>
+        <script type="text/javascript" src="/static/scripts/Battlefield.js"></script>
+        <script type="text/javascript" src="/static/scripts/BattlefieldView.js"></script>
+        <script type="text/javascript" src="/static/scripts/Ship.js"></script>
+        <script type="text/javascript" src="/static/scripts/ShipView.js"></script>
+        <script type="text/javascript" src="/static/scripts/Shot.js"></script>
+        <script type="text/javascript" src="/static/scripts/ShotView.js"></script>
+        <script type="text/javascript" src="/static/scripts/script.js"></script>
+    </body>
 </html>
